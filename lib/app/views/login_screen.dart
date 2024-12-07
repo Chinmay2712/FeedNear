@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.neutralColor,
                       shadowColor: Colors.transparent, // Transparent background
-                      side: BorderSide(
+                      side: const BorderSide(
                           color: AppColors.darkColor), // Dark color outline
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
@@ -80,25 +80,24 @@ class LoginScreen extends StatelessWidget {
                       controller.loginModel.value.email = value,
                   decoration: InputDecoration(
                     labelText: 'Enter your Email',
-                    labelStyle: TextStyle(
-                      color:
-                          AppColors.darkColor, // Keep label color as darkColor
+                    labelStyle: const TextStyle(
+                      color: AppColors.darkColor, // Keep label color as darkColor
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(
                           10), // Circular border with radius 10
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: AppColors.darkColor), // Dark border color
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: AppColors
                               .darkColor), // Keep border color as darkColor when focused
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: AppColors
                               .darkColor), // Keep border color as darkColor when enabled
                     ),
