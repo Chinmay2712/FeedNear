@@ -1,4 +1,5 @@
 import 'package:feednear/app/constants/typography.dart';
+import 'package:feednear/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
@@ -24,7 +25,7 @@ class LoginScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -39,17 +40,36 @@ class LoginScreen extends StatelessWidget {
                             30), // Optional: to add rounded corners
                       ),
                     ),
-                    child: Text(
-                      'Sign in with Google',
-                      style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.primaryColor,
-                        fontWeight:
-                            FontWeight.bold, // Text color remains the same
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 24, // Adjust based on the button height
+                            width: 24, // Keeps the aspect ratio square
+                            child: Image.asset(
+                              "assets/images/google.png",
+                              fit: BoxFit
+                                  .contain, // Scales the image to fit within the bounds
+                            ),
+                          ),
+                          const SizedBox(
+                              width:
+                                  8), // Add spacing between the image and text
+                          Text(
+                            'Sign in with Google',
+                            style: AppTypography.bodyMedium.copyWith(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -62,8 +82,9 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8, right: 8),
                       child: Text(
                         'or sign in with email', // Text in the middle of the divider
-                        style: AppTypography.bodySmall
-                            .copyWith(color: AppColors.greyColor),
+                        style: AppTypography.bodySmall.copyWith(
+                          color: AppColors.greyColor,
+                        ),
                       ),
                     ),
                     const Expanded(
@@ -79,9 +100,12 @@ class LoginScreen extends StatelessWidget {
                   onChanged: (value) =>
                       controller.loginModel.value.email = value,
                   decoration: InputDecoration(
-                    labelText: 'Enter your Email',
+                    hintText: 'Enter your Email',
+                    hintStyle: TextStyle(color: AppColors.greyColor),
+                    labelText: 'Email',
                     labelStyle: const TextStyle(
-                      color: AppColors.darkColor, // Keep label color as darkColor
+                      color:
+                          AppColors.darkColor, // Keep label color as darkColor
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(
@@ -114,7 +138,9 @@ class LoginScreen extends StatelessWidget {
                   obscureText: controller.isPasswordObscured
                       .value, // Toggle password visibility using controller
                   decoration: InputDecoration(
-                    labelText: 'Enter your Password',
+                    hintText: 'Enter your Password',
+                    hintStyle: TextStyle(color: AppColors.greyColor),
+                    labelText: 'Password',
                     labelStyle: const TextStyle(
                       color:
                           AppColors.darkColor, // Keep label color as darkColor
@@ -176,40 +202,93 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 18),
                 // Login Button with gradient background
                 controller.isLoading.value
                     ? CircularProgressIndicator()
-                    : Container(
-                        width: double
-                            .infinity, // Make the button as wide as the screen
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(30)),
-                          gradient: LinearGradient(
-                            colors: [
-                              Theme.of(context)
-                                  .primaryColor, // Using the theme's primary color
-                              AppColors
-                                  .secondaryColor, // Using the theme's accent color
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+                    : Column(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    AppColors.primaryColor,
+                                    AppColors.secondaryColor,
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: ElevatedButton(
+                                onPressed: controller.login,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.transparent,
+                                  shadowColor: Colors.transparent,
+                                  padding:
+                                      EdgeInsets.zero, // Remove default padding
+                                  minimumSize: const Size(double.infinity,
+                                      48), // Set explicit height
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  visualDensity: VisualDensity.compact,
+                                ),
+                                child: const Text(
+                                  'Login',
+                                  style: AppTypography.bodyMedium,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        child: ElevatedButton(
-                          onPressed: controller.login,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Colors.transparent, // Remove default color
-                            shadowColor: Colors.transparent, // Remove shadow
-                            padding: const EdgeInsets.symmetric(vertical: 8),
+                          // const SizedBox(
+                          //   height: 12, // Ensure exactly 12 units of space
+                          // ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Transform.translate(
+                              offset: Offset(0, -6),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Don't have an account? ",
+                                    style: TextStyle(
+                                      color: AppColors.greyColor,
+                                      fontSize:
+                                          AppTypography.bodySmall.fontSize,
+                                    ),
+                                  ),
+                                  Transform.translate(
+                                    offset: Offset(-12, 0),
+                                    child: TextButton(
+                                      onPressed: () {
+                                        Get.toNamed(
+                                          Routes.register,
+                                        );
+                                      },
+                                      child: Text(
+                                        "Sign Up",
+                                        style: TextStyle(
+                                          color: AppColors.primaryColor,
+                                          decoration: TextDecoration.underline,
+                                          decorationColor:
+                                              AppColors.primaryColor,
+                                          decorationThickness: 1,
+                                          fontSize:
+                                              AppTypography.bodySmall.fontSize,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          child: const Text(
-                            'Login',
-                            style: AppTypography.bodyMedium,
-                          ),
-                        ),
+                        ],
                       ),
               ],
             );

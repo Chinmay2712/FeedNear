@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'FeedNear',
-      initialRoute: Routes.login,
+      initialRoute: Routes.splash,
       getPages: Routes.routes,
       theme: AppTheme.theme, // Use AppTheme.theme
     );

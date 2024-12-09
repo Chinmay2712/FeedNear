@@ -1,0 +1,30 @@
+Container(
+                          width: 90,
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                           // Grey color for the background
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(
+                              controller.onboardingItems.length,
+                                  (index) => AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                margin: const EdgeInsets.symmetric(horizontal: 5),
+                                height: 10,
+                                width: controller.currentPage.value == index ? 20 : 10, // Adjust width for active page
+                                decoration: BoxDecoration(
+                                  color: controller.currentPage.value == index
+                                      ? Colors.white
+                                      : AppColors.greyColor,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+
+
