@@ -41,6 +41,7 @@ class OnboardingController extends GetxController {
       } else {
         // After the last page, restart from the first page
         pageController.jumpToPage(0);
+
       }
     });
   }

@@ -1,3 +1,4 @@
+import 'package:feednear/app/routes.dart';
 import 'package:get/get.dart';
 import '../models/login_model.dart';
 
@@ -22,10 +23,9 @@ class LoginController extends GetxController {
         if (loginModel.value.email == 'test@example.com' &&
             loginModel.value.password == 'password') {
           // Navigate to another screen on successful login
-          Get.offNamed('/home'); // Use the route to navigate
+          Get.offNamed(Routes.sites); // Use the route to navigate
         } else {
-          Get.snackbar('Login Failed', 'Invalid email or password',
-              snackPosition: SnackPosition.BOTTOM);
+          Get.snackbar('Login Failed', 'Invalid email or password',);
         }
       });
     }

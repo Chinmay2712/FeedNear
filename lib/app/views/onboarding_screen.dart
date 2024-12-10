@@ -35,7 +35,7 @@ class OnboardingScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10, left: 50, right: 50), // Add vertical and horizontal padding
+            padding: const EdgeInsets.only(top: 10, left: 50, right: 50),
             child: Image.asset(
               'assets/images/feednear_green.png',
               width: 250,
@@ -57,16 +57,22 @@ class OnboardingScreen extends StatelessWidget {
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            Obx(() {
+                              // AnimatedScale for pop-up effect
+                              final isCurrentPage =
+                                  controller.currentPage.value == index;
+                              return AnimatedScale(
+                                scale: isCurrentPage ? 0.9 : 0.5,
+                                duration: const Duration(milliseconds: 500),
+                                child: Image.asset(
+                                  item.imagePath,
+                                  height: 330,
+                                  width: 330,
+                                ),
+                              );
+                            }),
                             Transform.translate(
-                              offset: const Offset(0, -12),
-                              child: Image.asset(
-                                item.imagePath,
-                                height: 330,
-                                width: 330,
-                              ),
-                            ),
-                            Transform.translate(
-                              offset: Offset(0, 37),
+                              offset: const Offset(0, 37),
                               child: Text(
                                 item.title,
                                 style: AppTypography.headlineMedium.copyWith(
@@ -90,14 +96,14 @@ class OnboardingScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 20), // Add spacing between text and indicators
+                            const SizedBox(height: 20),
                           ],
                         );
                       },
                     ),
                     // Positioned AnimatedContainer on top of the PageView
                     Positioned(
-                      bottom: 280, // Adjust as necessary to position below the image
+                      bottom: 280,
                       left: 140,
                       right: 140,
                       child: Obx(
@@ -105,7 +111,8 @@ class OnboardingScreen extends StatelessWidget {
                           width: 90,
                           decoration: BoxDecoration(
                             color: Colors.grey[400],
-                            borderRadius: const BorderRadius.all(Radius.circular(30)),
+                            borderRadius:
+                            const BorderRadius.all(Radius.circular(30)),
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Row(
@@ -119,7 +126,7 @@ class OnboardingScreen extends StatelessWidget {
                                 height: 10,
                                 width: controller.currentPage.value == index
                                     ? 20
-                                    : 10, // Adjust width for active page
+                                    : 10,
                                 decoration: BoxDecoration(
                                   color: controller.currentPage.value == index
                                       ? Colors.white
@@ -151,8 +158,8 @@ class OnboardingScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,
                           shadowColor: Colors.transparent,
-                          padding: EdgeInsets.zero, // Remove default padding
-                          minimumSize: const Size(double.infinity, 48), // Set explicit height
+                          padding: EdgeInsets.zero,
+                          minimumSize: const Size(double.infinity, 48),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
