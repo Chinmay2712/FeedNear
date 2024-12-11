@@ -3,11 +3,7 @@ class RegistrationModel {
   String email;
   String password;
 
-  RegistrationModel({
-    required this.username,
-    required this.email,
-    required this.password,
-  });
+  RegistrationModel({required this.username, required this.email, required this.password});
 
   bool isValid() {
     return username.isNotEmpty && email.isNotEmpty && password.isNotEmpty;

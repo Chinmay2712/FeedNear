@@ -1,47 +1,44 @@
+import 'package:feednear/app/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:get/get.dart';
 import '../constants/typography.dart';
 import '../controllers/sites_controller.dart';
-import 'package:feednear/app/constants/colors.dart';
+import '../utils/draggable_scrollable_bottom_sheet.dart';
+import 'package:feednear/app/utils/draggable_scrollable_bottom_sheet.dart'; // Import the NearbySitesSheet file
 
 class SitesScreen extends StatelessWidget {
-  // Getting the controller to manage the state
   final SitesController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.neutralColor,
+      backgroundColor: Colors.white,
       body: Column(
         children: [
-          // Search bar
           Padding(
             padding: const EdgeInsets.only(
                 left: 16.0, right: 16.0, top: 68.0, bottom: 16.0),
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search Sites',
-                prefixIcon: const Icon(Icons.menu_rounded,
-                    color: AppColors.greyColor),
-                suffixIcon: const Icon(Icons.search_rounded,
-                    color: AppColors.greyColor),
+                prefixIcon: const Icon(Icons.menu_rounded, color: Colors.grey),
+                suffixIcon:
+                const Icon(Icons.search_rounded, color: Colors.grey),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
+                    borderRadius: BorderRadius.circular(30.0)),
               ),
             ),
           ),
-
-          // Tabs
           Expanded(
             child: DefaultTabController(
               length: 2,
               child: Column(
                 children: [
                   const TabBar(
-                    indicatorColor: AppColors.primaryColor,
-                    labelColor: AppColors.primaryColor,
-                    unselectedLabelColor: AppColors.greyColor,
+                    indicatorColor: Colors.green,
+                    labelColor: Colors.green,
+                    unselectedLabelColor: Colors.grey,
                     tabs: [
                       Tab(text: "Sites"),
                       Tab(text: "Maps"),
@@ -50,12 +47,10 @@ class SitesScreen extends StatelessWidget {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        // Sites Tab
                         Obx(() {
                           if (controller.sitesList.isEmpty) {
                             return const Center(
-                              child: Text('No sites available.'),
-                            );
+                                child: Text('No sites available.'));
                           }
                           return ListView.builder(
                             itemCount: controller.sitesList.length,
@@ -67,17 +62,14 @@ class SitesScreen extends StatelessWidget {
                                     vertical: 8, horizontal: 16),
                                 elevation: 4,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: Row(
                                     children: [
-                                      // Image Preview
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child: site.imageUrl != null &&
-                                            site.imageUrl.isNotEmpty
+                                        child: site.imageUrl.isNotEmpty
                                             ? Image.network(
                                           site.imageUrl,
                                           width: 80,
@@ -96,7 +88,6 @@ class SitesScreen extends StatelessWidget {
                                         ),
                                       ),
                                       const SizedBox(width: 12),
-                                      // Text Content
                                       Expanded(
                                         child: Column(
                                           crossAxisAlignment:
@@ -115,9 +106,7 @@ class SitesScreen extends StatelessWidget {
                                             Text(
                                               site.description,
                                               style: AppTypography.labelMedium
-                                                  .copyWith(
-                                                color: AppColors.greyColor,
-                                              ),
+                                                  .copyWith(color: Colors.grey),
                                               maxLines: 2,
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -125,7 +114,7 @@ class SitesScreen extends StatelessWidget {
                                             Row(
                                               children: [
                                                 const Icon(Icons.location_on,
-                                                    color: AppColors.greyColor,
+                                                    color: Colors.grey,
                                                     size: 18),
                                                 const SizedBox(width: 4),
                                                 Expanded(
@@ -134,9 +123,7 @@ class SitesScreen extends StatelessWidget {
                                                     style: AppTypography
                                                         .labelMedium
                                                         .copyWith(
-                                                      color:
-                                                      AppColors.greyColor,
-                                                    ),
+                                                        color: Colors.grey),
                                                     maxLines: 1,
                                                     overflow:
                                                     TextOverflow.ellipsis,
@@ -154,9 +141,25 @@ class SitesScreen extends StatelessWidget {
                             },
                           );
                         }),
-                        // Maps Tab
-                        const Center(
-                          child: Text('Maps Tab Content'),
+
+                        // Maps Tab with NearbySitesSheet
+                        Stack(
+                          children: [
+                            // Map container
+                            Container(
+                              color: Colors.blue[100], // Placeholder for map
+                              child:
+                              const Center(child: Text('Map will be here')),
+                            ),
+
+                            // Nearby Sites Sheet at the bottom
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: NearbySitesSheet(), // Here we include the NearbySitesSheet widget
+                            ),
+                          ],
                         ),
                       ],
                     ),

@@ -18,37 +18,41 @@ class SitesController extends GetxController {
     sitesList.value = [
       Site(
         name: 'Site 1',
-        description: 'This is a description of Site 1.',
+        description: 'This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.',
         address: '123 Main Street, City, Country',
         imageUrl: 'https://via.placeholder.com/80',
       ),
       Site(
         name: 'Site 2',
-        description: 'This is a description of Site 2.',
+        description: 'This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.',
         address: '456 Elm Street, City, Country',
         imageUrl: 'https://via.placeholder.com/80',
       ),
       Site(
         name: 'Site 3',
-        description: 'This is a description of Site 3.',
+        description: 'This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.',
+
         address: '789 Oak Street, City, Country',
         imageUrl: 'https://via.placeholder.com/80',
       ),
       Site(
         name: 'Site 4',
-        description: 'This is a description of Site 3.',
+        description: 'This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.',
+
         address: '789 Oak Street, City, Country',
         imageUrl: 'https://via.placeholder.com/80',
       ),
       Site(
         name: 'Site 5',
-        description: 'This is a description of Site 3.',
+        description: 'This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.',
+
         address: '789 Oak Street, City, Country',
         imageUrl: 'https://via.placeholder.com/80',
       ),
       Site(
         name: 'Site 6',
-        description: 'This is a description of Site 3.',
+        description: 'This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.This is a description of Site 1.',
+
         address: '789 Oak Street, City, Country',
         imageUrl: 'https://via.placeholder.com/80',
       ),
