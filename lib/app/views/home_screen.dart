@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.neutralColor,
       extendBody: true,
       body: screens[controller.currentIndex.value],
