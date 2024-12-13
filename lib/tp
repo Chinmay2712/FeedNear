@@ -1,14 +1,125 @@
-MarkerLayer(
-                                      markers: [
-                                        Marker(
-                                          point: LatLng(_currentLocation!.latitude, _currentLocation!.longitude),
-                                          child: const Icon(
-                                            Icons.location_on,
-                                            size: 40.0, // Customize marker size
-                                            color: Colors.red, // Customize the marker color
-                                          ),
-                                          width: 40,  // Customize the width
-                                          height: 40, // Customize the height
-                                        ),
-                                      ],
+Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: SizedBox(
+        height: 80,
+        child: Obx(
+          () => Stack(
+            children: [
+              // Scrollable ListView of Circle Avatars
+              if (!isSearchExpanded.value)
+                ClipRect(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 88, right: 16.0), // Padding for fixed search icon
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10, // Sample avatar count
+                      separatorBuilder: (context, index) => const SizedBox(width: 12),
+                      itemBuilder: (context, index) {
+                        return CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(
+                              'https://i.pravatar.cc/150?img=${index + 1}'), // Sample avatars
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              // Animated Search Icon/Bar
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 400),
+                left: isSearchExpanded.value ? 16 : 16,
+                right: isSearchExpanded.value ? 16 : null,
+                child: GestureDetector(
+                  onTap: () => isSearchExpanded.value = !isSearchExpanded.value,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 400),
+                    width: isSearchExpanded.value ? MediaQuery.of(context).size.width - 32 : 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[700]?.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(isSearchExpanded.value ? 12 : 30),
+                    ),
+                    child: isSearchExpanded.value
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.search,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      hintText: 'Search...',
+                                      hintStyle: TextStyle(color: Colors.white.withOpacity(0.8)),
+                                      border: InputBorder.none,
                                     ),
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.close, color: Colors.white),
+                                  onPressed: () => isSearchExpanded.value = false,
+                                ),
+                              ],
+                            ),
+                          )
+                        : const Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+
+ Padding(
+               padding: const EdgeInsets.symmetric(vertical: 10.0),
+               child: SizedBox(
+                 height: 80,
+                 child: Stack(
+                   children: [
+                     // Scrollable ListView of Circle Avatars
+                     ClipRect(
+                       child: Padding(
+                         padding: const EdgeInsets.only(left: 88, right: 16.0), // Padding for fixed search icon
+                         child: ListView.separated(
+                           scrollDirection: Axis.horizontal,
+                           itemCount: controller.avatars.length,
+                           separatorBuilder: (context, index) => const SizedBox(width: 12),
+                           itemBuilder: (context, index) {
+                             return CircleAvatar(
+                               radius: 30,
+                               backgroundImage: NetworkImage(controller.avatars[index]),
+                             );
+                           },
+                         ),
+                       ),
+                     ),
+                     // Fixed Search Icon
+                     Positioned(
+                       left: 16, // Position it to the left
+                       top: 0, // Align vertically
+                       bottom: 0,
+                       child: CircleAvatar(
+                         radius: 30,
+                         backgroundColor: Colors.grey[700]?.withOpacity(0.4),
+                         child: const Icon(
+                           Icons.search,
+                           color: Colors.white,
+                           size: 30,
+                         ),
+                       ),
+                     ),
+                   ],
+                 ),
+               ),
+             ),

@@ -56,4 +56,13 @@ class CustomMapController {
       print("Error moving camera: $e");
     }
   }
+
+  Future<void> recenterCamera() async {
+    LocationModel? currentLocation = await getCurrentLocation();
+    if (currentLocation != null) {
+      moveCameraToLocation(currentLocation);
+    } else {
+      print("Unable to recenter camera: current location is null.");
+    }
+  }
 }
