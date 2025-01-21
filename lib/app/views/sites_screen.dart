@@ -46,24 +46,38 @@ class _SitesScreenState extends State<SitesScreen> {
       length: 2, // Number of tabs
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.neutralColor,
+        backgroundColor: Colors.white,
         body: Stack(
           children: [
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, right: 16.0, top: 68.0, bottom: 16.0),
+                  padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 68.0, bottom: 16.0),
                   child: TextField(
                     decoration: InputDecoration(
                       focusColor: AppColors.primaryColor,
                       hintText: 'Search Sites',
-                      prefixIcon:
-                          const Icon(Icons.menu_rounded, color: Colors.grey),
-                      suffixIcon:
-                          const Icon(Icons.search_rounded, color: Colors.grey),
+                      prefixIcon: const Icon(Icons.menu_rounded, color: Colors.grey),
+                      suffixIcon: const Icon(Icons.search_rounded, color: Colors.grey),
+                      filled: true,
+                      fillColor: Colors.white,
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: AppColors.primaryColor, // Border color when not focused
+                          width: 1.5,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: AppColors.primaryColor, // Border color when focused
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                     ),
                   ),
                 ),
@@ -93,7 +107,7 @@ class _SitesScreenState extends State<SitesScreen> {
                                 itemBuilder: (context, index) {
                                   final site = controller.sitesList[index];
                                   return Card(
-                                    color: Colors.white,
+                                    color: AppColors.neutralColor,
                                     margin: const EdgeInsets.symmetric(
                                         vertical: 8, horizontal: 16),
                                     elevation: 6,
@@ -253,7 +267,7 @@ class _SitesScreenState extends State<SitesScreen> {
                                         children: [
                                           TileLayer(
                                             urlTemplate:
-                                                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                                             subdomains: const ['a', 'b', 'c'],
                                           ),
                                           MarkerLayer(

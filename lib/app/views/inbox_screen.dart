@@ -145,7 +145,7 @@ class InboxScreen extends StatelessWidget {
                       clipBehavior: Clip.hardEdge,
                       height: double.infinity,
                       decoration: const BoxDecoration(
-                        color: AppColors.neutralColor,
+                        color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30),
@@ -162,7 +162,7 @@ class InboxScreen extends StatelessWidget {
                               child: GestureDetector(
                                 onTap: () {},
                                 child: Card(
-                                  color: Colors.white,
+                                  color: AppColors.neutralColor,
                                   elevation: 3,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),

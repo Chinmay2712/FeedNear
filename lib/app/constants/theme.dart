@@ -10,7 +10,7 @@ class AppTheme {
       brightness: Brightness.light,
       primaryColor: AppColors.primaryColor,
       scaffoldBackgroundColor: AppColors.neutralColor, // Background color
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         color: AppColors.primaryColor, // AppBar background color
         elevation: 0, // Optional: remove shadow from AppBar
       ),
